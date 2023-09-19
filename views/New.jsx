@@ -7,7 +7,12 @@ function New() {
       <form action="/logs" method="POST">
         <input type="text" id="title" name="title" />
         <textarea id="entry" name="entry" />
-        <input type="checkbox" id="shipIsBroken" name="shipIsBroken" />
+        <input
+          type="checkbox"
+          id="shipIsBroken"
+          name="shipIsBroken"
+          value="true"
+        />
         <input type="submit" value="Submit" />
       </form>
     </div>
