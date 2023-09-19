@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"); //imported body parser
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const methodOverride = require("method-override");
 
 const Logs = require("./models/logs");
 const jsxViewEngine = require("jsx-view-engine");
@@ -14,6 +15,8 @@ app.engine("jsx", jsxViewEngine());
 
 // body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(methodOverride("_method"));
 
 // connection to mongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -71,6 +74,19 @@ app.get("/logs/:id", async (req, res) => {
 
     // Render the Show view and pass the log data
     res.render("Show", { log });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("An error occurred.");
+  }
+});
+
+app.delete("/logs/:id", async (req, res) => {
+  try {
+    const deletedLog = await Logs.findByIdAndRemove(req.params.id);
+    if (!deletedLog) {
+      return res.status(404).send("Log entry not found.");
+    }
+    res.redirect("/logs"); // Redirect back to the index route
   } catch (err) {
     console.error(err);
     res.status(500).send("An error occurred.");
