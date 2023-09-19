@@ -10,7 +10,6 @@ class Show extends React.Component {
         <p>Entry: {log.entry}</p>
         <p>Ship is Broken: {log.shipIsBroken ? "Yes" : "No"}</p>
         <p>Date Created: {log.createdAt.toString()}</p>{" "}
-        {/* Display timestamp if available */}
         <a href="/logs">Back to Index</a>
       </div>
     );

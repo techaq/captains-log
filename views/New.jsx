@@ -1,6 +1,6 @@
 const React = require("react");
 
-class Index extends React.Component {
+class New extends React.Component {
   render() {
     return (
       <div>
