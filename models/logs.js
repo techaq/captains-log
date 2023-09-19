@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 // define Logs schema
@@ -19,6 +20,6 @@ const logsSchema = new Schema(
   { timestamps: true }
 );
 
-const Logs = mongoose.model("Logs", logsSchema);
+const Logs = model("Logs", logsSchema);
 
 module.exports = Logs;
